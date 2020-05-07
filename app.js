@@ -10,6 +10,9 @@ const cors = require('cors');
 require('dotenv').config();
 
 const dbPath = process.env.MONGODB_URI;
+const Brand = require('./models/Brand');
+const seeds = require('./seeds/seeds');
+//const Shoe = require('./models/Shoe');
 
 mongoose
 	.connect(dbPath, {
@@ -20,12 +23,25 @@ mongoose
 	.then(() => {
 		console.log(`conected to ${dbPath}`);
 	})
+	// .then(() => {
+	// 	return Brand.deleteMany();
+	// })
+	// .then(() => {
+	// 	return Brand.create(seeds);
+	// })
+	// .then(() =>{
+	// 	console.log('added seed to db');
+	// 	mongoose.connection.close();
+	// })
+
 	.catch(error => {
 		console.error(error);
 	});
 
 const authRouter = require('./routes/auth');
 const demoRouter = require('./routes/demo');
+const brandsRouter = require('./routes/brands');
+const shoesRouter = require('./routes/shoes');
 
 const app = express();
 
@@ -58,6 +74,8 @@ app.use(
 
 app.use('/', authRouter);
 app.use('/protected', demoRouter);
+app.use('/brands', brandsRouter);
+app.use('/shoes', shoesRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
