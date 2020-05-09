@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const shoeSchema = new Schema(
 	{
 		name: { type: String, required: true, unique: true },
-        brand: { type: Schema.Types.ObjectId, ref: 'Brand' },
+    brand: { type: Schema.Types.ObjectId, ref: 'Brand' },
 	},
 	{
 		timestamps: {

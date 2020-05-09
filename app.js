@@ -41,7 +41,8 @@ mongoose
 const authRouter = require('./routes/auth');
 const demoRouter = require('./routes/demo');
 const brandsRouter = require('./routes/brands');
-const shoesRouter = require('./routes/shoes');
+const sneakersRouter = require('./routes/sneakers');
+const reviewRouter = require('./routes/review');
 
 const app = express();
 
@@ -75,8 +76,8 @@ app.use(
 app.use('/', authRouter);
 app.use('/protected', demoRouter);
 app.use('/brands', brandsRouter);
-app.use('/shoes', shoesRouter);
-
+app.use('/sneakers', sneakersRouter);
+app.use('/reviews', reviewRouter);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
 	res.status(404).json({ code: 'not found' });

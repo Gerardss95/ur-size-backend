@@ -1,28 +1,20 @@
 const express = require('express');
 const Brand = require('../models/Brand');
-const Shoe = require('../models/Shoe');
+const Sneaker = require('../models/Sneaker');
 
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-	Shoe.find()
+	Sneaker.find()
 		.then(shoes => {
-			return res.json(shoes);
-		})
-		.catch(next);
-});
-
-router.get('/add', (req, res, next) => {
-	Brand.find()
-		.then(brand => {
-			res.status(200).json(brand);
+			return res.status(200).json(shoes);
 		})
 		.catch(next);
 });
 
 router.post('/add', (req, res, next) => {
 	const { name, brand } = req.body;
-	Shoe.create({
+	Sneaker.create({
 		name,
 		brand,
 	})
@@ -34,7 +26,7 @@ router.post('/add', (req, res, next) => {
 
 router.get('/:_id', (req, res, next) => {
 	const shoeID = req.params;
-	Shoe.findById(shoeID)
+	Sneaker.findById(shoeID)
 		.then(shoe => {
 			res.json(shoe);
 		})
@@ -43,7 +35,7 @@ router.get('/:_id', (req, res, next) => {
 
 router.delete('/:_id', (req, res, next) => {
 	const shoeID = req.params;
-	Shoe.findByIdAndDelete(shoeID)
+	Sneaker.findByIdAndDelete(shoeID)
 		.then(shoe => {
 			res.json(shoe);
 		})
@@ -53,7 +45,7 @@ router.delete('/:_id', (req, res, next) => {
 router.put('/:_id', (req, res, next) => {
 	const shoeID = req.params;
 	const { name, brand } = req.body;
-	Shoe.findByIdAndUpdate(shoeID, {
+	Sneaker.findByIdAndUpdate(shoeID, {
 		name,
 		brand,
 	})
