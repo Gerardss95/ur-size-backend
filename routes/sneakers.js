@@ -5,7 +5,8 @@ const Sneaker = require('../models/Sneaker');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-	Sneaker.find()
+  Sneaker.find()
+  .populate('brand')
 		.then(shoes => {
 			return res.status(200).json(shoes);
 		})
@@ -13,10 +14,12 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/add', (req, res, next) => {
-	const { name, brand } = req.body;
+	const { name, brand, info, image } = req.body;
 	Sneaker.create({
 		name,
-		brand,
+    brand,
+    info,
+    image,
 	})
 		.then(shoe => {
 			res.status(201).json(shoe);
@@ -47,7 +50,9 @@ router.put('/:_id', (req, res, next) => {
 	const { name, brand } = req.body;
 	Sneaker.findByIdAndUpdate(shoeID, {
 		name,
-		brand,
+    brand,
+    info,
+    image,
 	})
 		.then(shoeUpdated => {
 			if (shoeUpdated) {
