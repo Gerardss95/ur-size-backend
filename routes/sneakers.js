@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 		.catch(next);
 });
 
-router.post('/add', (req, res, next) => {
+router.post('/', (req, res, next) => {
 	const { name, brand, info, image } = req.body;
 	Sneaker.create({
 		name,
