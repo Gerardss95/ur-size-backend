@@ -49,7 +49,7 @@ const app = express();
 app.use(
 	cors({
 		credentials: true,
-		origin: [process.env.FRONTEND_DOMAIN],
+		origin: [process.env.FRONTEND_DOMAIN, process.env.FRONTEND_DEPLOY],
 	})
 );
 app.use(logger('dev'));
