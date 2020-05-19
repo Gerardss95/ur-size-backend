@@ -13,13 +13,13 @@ router.get('/', (req, res, next) => {
 		.catch(next);
 });
 
-router.post('/add', (req, res, next) => {
+router.post('/', (req, res, next) => {
 	const { name, brand, info, image } = req.body;
 	Sneaker.create({
 		name,
-    brand,
-    info,
-    image,
+		brand,
+		info,
+		image,
 	})
 		.then(shoe => {
 			res.status(201).json(shoe);

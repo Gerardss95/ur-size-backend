@@ -1,5 +1,4 @@
 module.exports = [
-
 	{
 		name: 'Adidas',
 		image: 'https://i.ibb.co/4sycM7y/adidas-PNG21.png',

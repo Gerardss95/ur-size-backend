@@ -23,16 +23,16 @@ mongoose
 	.then(() => {
 		console.log(`conected to ${dbPath}`);
 	})
-	// .then(() => {
+	//  .then(() => {
 	// 	return Brand.deleteMany();
-	// })
-	// .then(() => {
-	// 	return Brand.create(seeds);
-	// })
-	// .then(() =>{
-	// 	console.log('added seed to db');
-	// 	mongoose.connection.close();
-	// })
+	//  })
+	//  .then(() => {
+	//  	return Brand.create(seeds);
+	//  })
+	//  .then(() =>{
+	//  	console.log('added seed to db');
+	//  	mongoose.connection.close();
+	//  })
 
 	.catch(error => {
 		console.error(error);
