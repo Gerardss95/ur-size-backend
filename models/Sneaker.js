@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const shoeSchema = new Schema(
+const sneakerSchema = new Schema(
 	{
 		name: { type: String, required: true, unique: true },
 		image: [{ type: String, required: true }],
@@ -17,6 +17,6 @@ const shoeSchema = new Schema(
 	}
 );
 
-const Shoe = mongoose.model('Shoe', shoeSchema);
+const Sneaker = mongoose.model('sneaker', sneakerSchema);
 
-module.exports = Shoe;
+module.exports = Sneaker;
