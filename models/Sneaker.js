@@ -7,7 +7,8 @@ const sneakerSchema = new Schema(
 		name: { type: String, required: true, unique: true },
 		image: [{ type: String, required: true }],
 		brand: { type: Schema.Types.ObjectId, ref: 'Brand' },
-		info: { type: String },
+    info: { type: String },
+    userId: { type: Schema.Types.ObjectId, ref: 'User' },
 	},
 	{
 		timestamps: {

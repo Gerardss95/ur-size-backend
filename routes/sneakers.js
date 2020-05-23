@@ -14,15 +14,17 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+  const userId = req.session.userLogged._id;
 	const { name, brand, info, image } = req.body;
 	Sneaker.create({
 		name,
 		brand,
 		info,
-		image,
+    image,
+    userId,
 	})
-		.then(sneaker => {
-			res.status(201).json(sneaker);
+		.then(newSneaker => {
+			res.status(201).json(newSneaker);
 		})
 		.catch(next);
 });
