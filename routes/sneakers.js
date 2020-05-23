@@ -39,7 +39,7 @@ router.get('/:_id', (req, res, next) => {
 });
 
 router.delete('/:_id', (req, res, next) => {
-	const sneakerID = req.params;
+	const sneakerID = req.params.id;
 	Sneaker.findByIdAndDelete(sneakerID)
 		.then(sneaker => {
 			res.json(sneaker);
