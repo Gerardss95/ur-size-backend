@@ -39,7 +39,7 @@ router.get('/:_id', (req, res, next) => {
 });
 
 router.delete('/:_id', (req, res, next) => {
-	const sneakerID = req.params.id;
+	const sneakerID = req.params;
 	Sneaker.findByIdAndDelete(sneakerID)
 		.then(sneaker => {
 			res.json(sneaker);
@@ -48,9 +48,8 @@ router.delete('/:_id', (req, res, next) => {
 });
 
 router.put('/:_id', (req, res, next) => {
-	const sneakerID = req.params.id;
 	const { name, brand, info, image } = req.body;
-	Sneaker.findByIdAndUpdate(sneakerID, {
+	Sneaker.findByIdAndUpdate(req.params.id, {
 		name,
     brand,
     info,
