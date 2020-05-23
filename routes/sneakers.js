@@ -49,7 +49,7 @@ router.delete('/:_id', (req, res, next) => {
 
 router.put('/:_id', (req, res, next) => {
 	const sneakerID = req.params;
-	const { name, brand } = req.body;
+	const { name, brand, info, image } = req.body;
 	Sneaker.findByIdAndUpdate(sneakerID, {
 		name,
     brand,
