@@ -30,8 +30,8 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/:_id', (req, res, next) => {
-	const sneakerID = req.params;
-	Sneaker.findById(sneakerID)
+  const sneakerID = req.params;
+  Sneaker.findById(sneakerID)
 		.then(sneaker => {
 			res.json(sneaker);
 		})
@@ -39,8 +39,9 @@ router.get('/:_id', (req, res, next) => {
 });
 
 router.delete('/:_id', (req, res, next) => {
-	const sneakerID = req.params;
-	Sneaker.findByIdAndDelete(sneakerID)
+  const sneakerID = req.params;
+ 
+  Sneaker.findByIdAndDelete(sneakerID)
 		.then(sneaker => {
 			res.json(sneaker);
 		})
@@ -48,8 +49,8 @@ router.delete('/:_id', (req, res, next) => {
 });
 
 router.put('/:_id', (req, res, next) => {
-	const { name, brand, info, image } = req.body;
-	Sneaker.findByIdAndUpdate(req.params.id, {
+  const { name, brand, info, image } = req.body;
+	Sneaker.findByIdAndUpdate(req.params, {
 		name,
     brand,
     info,
