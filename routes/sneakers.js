@@ -14,8 +14,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  const userId = req.session.userLogged._id;
-	const { name, brand, info, image } = req.body;
+ 
+	const { name, brand, info, image, userId } = req.body;
 	Sneaker.create({
 		name,
 		brand,
