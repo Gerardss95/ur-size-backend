@@ -6,7 +6,7 @@ const reviewSchema = new Schema(
 	{
 		user: { type: Schema.Types.ObjectId, ref: 'User' },
 		brand: { type: Schema.Types.ObjectId, ref: 'Brand' },
-		sneaker: { type: Schema.Types.ObjectId, ref: 'Sneaker' },
+		sneaker: { type: Schema.Types.ObjectId, ref: 'sneaker' },
 		review: { type: String },
 		userSize: { type: Number },
 	},
