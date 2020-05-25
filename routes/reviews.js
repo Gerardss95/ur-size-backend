@@ -33,7 +33,7 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/:_id', (req, res, next) => {
-	const { id } = req.params;
+  const { id } = req.params;
 	Review.findById(id)
 		.then(review => {
 			res.json(review);
