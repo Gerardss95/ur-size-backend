@@ -42,7 +42,7 @@ const authRouter = require('./routes/auth');
 const demoRouter = require('./routes/demo');
 const brandsRouter = require('./routes/brands');
 const sneakersRouter = require('./routes/sneakers');
-const reviewRouter = require('./routes/review');
+const reviewRouter = require('./routes/reviews');
 
 const app = express();
 
