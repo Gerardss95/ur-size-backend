@@ -7,7 +7,8 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
 	Review.find()
 		.populate('brand')
-		.populate('user')
+    .populate('user')
+    .populate('sneaker')
 		.then(reviews => {
 			return res.status(200).json(reviews);
 		})
@@ -15,12 +16,13 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-	const { review, userSize, brand, user } = req.body;
+	const { sneaker, review, userSize, brand, user } = req.body;
 	//	const sneaker = req.params;
 
 	Review.create({
 		user,
-		review,
+    review,
+    sneaker,
 		brand,
 		userSize,
 	})
@@ -50,10 +52,11 @@ router.delete('/:_id', (req, res, next) => {
 
 router.put('/:_id', (req, res, next) => {
 	const { id } = req.params._id;
-	const { review, userSize, brand } = req.body;
+	const { sneaker, review, userSize, brand } = req.body;
 	Review.findByIdAndUpdate(
 		id,
 		{
+      sneaker,
 			review,
 			userSize,
 			brand,
