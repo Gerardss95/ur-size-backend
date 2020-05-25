@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const reviewSchema = new Schema(
 	{
 		user: { type: Schema.Types.ObjectId, ref: 'User' },
-		sneaker: { type: Schema.Types.ObjectId, ref: 'Sneaker' },
+		brand: { type: Schema.Types.ObjectId, ref: 'Brand' },
 		review: { type: String },
 		userSize: { type: Number },
 	},

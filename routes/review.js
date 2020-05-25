@@ -1,26 +1,27 @@
 const express = require('express');
 const Review = require('../models/Review');
-const Sneaker= require('../models/Sneaker');
+const Brand = require('../models/Brand');
 
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
 	Review.find()
+		.populate('brand')
+		.populate('user')
 		.then(reviews => {
 			return res.status(200).json(reviews);
 		})
 		.catch(next);
 });
 
-router.post('/add', (req, res, next) => {
-	const { review, userSize, sneaker } = req.body;
-//	const sneaker = req.params;
-  const user = req.session.currentUser._id;
-	
+router.post('/', (req, res, next) => {
+	const { review, userSize, brand, user } = req.body;
+	//	const sneaker = req.params;
+
 	Review.create({
-    user,
+		user,
 		review,
-		sneaker,
+		brand,
 		userSize,
 	})
 		.then(newReview => {
@@ -40,7 +41,7 @@ router.get('/:_id', (req, res, next) => {
 
 router.delete('/:_id', (req, res, next) => {
 	const { id } = req.params;
-  Review.findByIdAndDelete(id)
+	Review.findByIdAndDelete(id)
 		.then(review => {
 			res.json(review);
 		})
@@ -48,12 +49,17 @@ router.delete('/:_id', (req, res, next) => {
 });
 
 router.put('/:_id', (req, res, next) => {
-	const { id } = req.params;
-	const { review, userSize } = req.body;
-  Review.findByIdAndUpdate(id, {
-		review,
-		userSize,
-	})
+	const { id } = req.params._id;
+	const { review, userSize, brand } = req.body;
+	Review.findByIdAndUpdate(
+		id,
+		{
+			review,
+			userSize,
+			brand,
+		},
+		{ new: true }
+	)
 		.then(reviewUpdated => {
 			if (reviewUpdated) {
 				res.json(reviewUpdated);
