@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 		.catch(next);
 });
 
-router.get('/sneaker', (req, res, next) => {
+router.get('/sneaker/:_id', (req, res, next) => {
 	const sneakerID = req.params;
 	Review.find({ sneakerID })
 		.populate('brand')
