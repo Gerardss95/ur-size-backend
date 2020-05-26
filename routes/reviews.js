@@ -37,6 +37,18 @@ router.get('/sneaker/:_id', (req, res, next) => {
 	});
 });
 
+router.get('/brand/:_id', (req, res, next) => {
+	const brandId = req.params._id;
+  Review.find({ brand: brandId })
+  .populate('brand')
+  .populate('user')
+  .populate('sneaker')
+  .then(reviews => {
+		res.json(reviews);
+	});
+});
+
+
 router.post('/', (req, res, next) => {
 	const { sneaker, review, userSize, brand, user } = req.body;
 	//	const sneaker = req.params;
