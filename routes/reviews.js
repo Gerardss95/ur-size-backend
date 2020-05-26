@@ -1,11 +1,22 @@
 const express = require('express');
 const Review = require('../models/Review');
 
-
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
 	Review.find()
+		.populate('brand')
+		.populate('user')
+		.populate('sneaker')
+		.then(reviews => {
+			return res.status(200).json(reviews);
+		})
+		.catch(next);
+});
+
+router.get('/sneaker', (req, res, next) => {
+	const sneakerID = req.params;
+	Review.find({ sneakerID })
 		.populate('brand')
 		.populate('user')
 		.populate('sneaker')
@@ -33,7 +44,7 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/:_id', (req, res, next) => {
-  const { id } = req.params;
+	const { id } = req.params;
 	Review.findById(id)
 		.then(review => {
 			res.json(review);
