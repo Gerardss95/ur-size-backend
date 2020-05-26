@@ -1,5 +1,6 @@
 const express = require('express');
 const Review = require('../models/Review');
+const Sneaker = require('../models/Sneaker');
 
 const router = express.Router();
 
@@ -14,16 +15,18 @@ router.get('/', (req, res, next) => {
 		.catch(next);
 });
 
+router.get('/user/:_id', (req, res, next) => {
+	const userId = req.params._id;
+	Review.find({ user: userId }).then(reviews => {
+		res.json(reviews);
+	});
+});
+
 router.get('/sneaker/:_id', (req, res, next) => {
-	const sneakerID = req.params;
-	Review.find({ sneakerID })
-		.populate('brand')
-		.populate('user')
-		.populate('sneaker')
-		.then(reviews => {
-			return res.status(200).json(reviews);
-		})
-		.catch(next);
+	const sneakerId = req.params._id;
+	Review.find({ sneaker: sneakerId }).then(reviews => {
+		res.json(reviews);
+	});
 });
 
 router.post('/', (req, res, next) => {
@@ -44,8 +47,9 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/:_id', (req, res, next) => {
-	const { id } = req.params;
-	Review.findById(id)
+	const reviewID = req.params._id;
+	console.log(reviewID);
+	Review.findById(reviewID)
 		.then(review => {
 			res.json(review);
 		})
