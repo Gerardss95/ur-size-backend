@@ -24,7 +24,7 @@ router.post(
 	'/signup',
 	[check('username').isLength({ min: 5 }), check('password').isLength({ min: 6 })],
 	async (req, res, next) => {
-		const { username, password } = res.locals.auth;
+		const { username, password } = req.body;
 		try {
 			const errors = validationResult(req);
 			if (!errors.isEmpty()) {
@@ -52,13 +52,14 @@ router.post(
 	'/login',
 	[check('username').isLength({ min: 5 }), check('password').isLength({ min: 6 })],
 	async (req, res, next) => {
-		const errors = validationResult(req);
-		if (!errors.isEmpty()) {
-			console.log(errors);
-			return res.status(422).json({ errors: errors.array() });
-		}
-		const { username, password } = res.locals.auth;
+	 
+		const { username, password } = req.body;
 		try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        console.log(errors);
+        return res.status(422).json({ errors: errors.array() });
+      }
 			const user = await User.findOne({ username });
 			if (!user) {
 				return res.status(404).json({ code: 'Invalid Username or password' });
