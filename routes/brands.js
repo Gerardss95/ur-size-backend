@@ -14,7 +14,8 @@ router.get('/', (req, res, next) => {
 
 router.get('/:_id', (req, res, next) => {
 	const brandID = req.params;
-	Sneaker.find({ brand: brandID })
+  Sneaker.find({ brand: brandID })
+  .populate('brand')
 		.then(sneakers => {
 			Brand.findById(brandID)
 				.then(brand => {
