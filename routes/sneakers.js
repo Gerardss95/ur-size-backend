@@ -30,7 +30,8 @@ router.post('/', (req, res, next) => {
 
 router.get('/:_id', (req, res, next) => {
 	const sneakerID = req.params;
-	Sneaker.findById(sneakerID)
+  Sneaker.findById(sneakerID)
+  .populate('brand')
 		.then(sneaker => {
 			res.json(sneaker);
 		})

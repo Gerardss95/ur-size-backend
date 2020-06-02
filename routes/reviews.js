@@ -17,37 +17,36 @@ router.get('/', (req, res, next) => {
 
 router.get('/user/:_id', (req, res, next) => {
 	const userId = req.params._id;
-  Review.find({ user: userId })
-  .populate('brand')
-  .populate('user')
-  .populate('sneaker')
-  .then(reviews => {
-		res.json(reviews);
-	});
+	Review.find({ user: userId })
+		.populate('brand')
+		.populate('user')
+		.populate('sneaker')
+		.then(reviews => {
+			res.json(reviews);
+		});
 });
 
 router.get('/sneaker/:_id', (req, res, next) => {
 	const sneakerId = req.params._id;
-  Review.find({ sneaker: sneakerId })
-  .populate('brand')
-  .populate('user')
-  .populate('sneaker')
-  .then(reviews => {
-		res.json(reviews);
-	});
+	Review.find({ sneaker: sneakerId })
+		.populate('brand')
+		.populate('user')
+		.populate('sneaker')
+		.then(reviews => {
+			res.json(reviews);
+		});
 });
 
 router.get('/brand/:_id', (req, res, next) => {
 	const brandId = req.params._id;
-  Review.find({ brand: brandId })
-  .populate('brand')
-  .populate('user')
-  .populate('sneaker')
-  .then(reviews => {
-		res.json(reviews);
-	});
+	Review.find({ brand: brandId })
+		.populate('brand')
+		.populate('user')
+		.populate('sneaker')
+		.then(reviews => {
+			res.json(reviews);
+		});
 });
-
 
 router.post('/', (req, res, next) => {
 	const { sneaker, review, userSize, brand, user } = req.body;
