@@ -14,11 +14,10 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-	const { name, brand, info, image, userId } = req.body;
+	const { name, brand, image, userId } = req.body;
 	Sneaker.create({
 		name,
 		brand,
-		info,
 		image,
 		userId,
 	})
@@ -55,7 +54,6 @@ router.put('/:_id', (req, res, next) => {
 		{
 			name,
 			brand,
-			info,
 			image,
 		},
 		{ new: true }
