@@ -76,16 +76,7 @@ User model
 }
 ```
 
-Event model
 
-```javascript
-{
-	owner: ObjectId<User>
-	name: String
-	description: String
-	date: Date
-	location: String
-}
 ```
 
 ## Links
